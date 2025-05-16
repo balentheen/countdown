@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Countdown to 8PM Argentina Time</title>
+</head>
+<body>
+  <h1>Countdown to 8:00 PM Argentina Time</h1>
+  <h2 id="countdown"></h2>
+
+  <script>
+    function updateCountdown() {
+      const now = new Date();
+      const target = new Date();
+
+      // Set to 8:00 PM Argentina Time (UTC-3)
+      target.setUTCHours(23, 0, 0, 0); // 8 PM ART is 23:00 UTC
+      if (now > target) {
+        target.setUTCDate(target.getUTCDate() + 1);
+      }
+
+      const diff = target - now;
+      const hours = Math.floor(diff / 1000 / 60 / 60);
+      const minutes = Math.floor((diff / 1000 / 60) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("countdown").textContent =
+        `${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
